@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./App.css";
 import C1 from "./images/c1.jpg";
 import C2 from "./images/c2.jpg";
@@ -10,9 +10,19 @@ import logo from "./images/logo.svg";
 import AliceCarousel from "react-alice-carousel";
 import "react-alice-carousel/lib/alice-carousel.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import Button from "react-bootstrap/Button";
+ import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/card";
-import Typed from "react-typed"
+import Typed from "react-typed";
+import ContactForm from "./components/ContactForm";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import "reactjs-popup/dist/index.css";
+import Popup from "./components/ContactForm";
+// import { Button, Dropdown, Input, Page, setOptions } from "@mobiscroll/react";
+
+// setOptions({
+//     theme: 'ios',
+//     themeVariant: 'light'
+//     });
 
 //import Navbar from './components';
 //import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
@@ -22,6 +32,11 @@ function App() {
   //   console.log("clicked");
   //   alert("clicked");
   //  }
+  const [isOpen, setIsOpen] = useState(false);
+
+  const togglePopup = () => {
+    setIsOpen(!isOpen);
+  };
   return (
     <diV>
       {/* <button onclick={test()}>click </button> */}
@@ -56,24 +71,25 @@ function App() {
                 </a>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="https://drive.google.com/file/d/1X0EjhXVpdDpXf2pws-c5LQ1PD_AySH__/view?usp=sharing">
+                <a
+                  className="nav-link"
+                  href="https://drive.google.com/file/d/1X0EjhXVpdDpXf2pws-c5LQ1PD_AySH__/view?usp=sharing"
+                >
                   CV
                 </a>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="#">
-                  Features
+                <a className="nav-link" href="#" onClick={togglePopup}>
+                  Contact Me
                 </a>
               </li>
               <li className="nav-item">
                 <a className="nav-link" href="#">
-                  Features
+                  Adds
                 </a>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="#">
-                  Pricing
-                </a>
+                <a className="nav-link">Pricing</a>
               </li>
             </ul>
           </div>
@@ -87,7 +103,7 @@ function App() {
         <img src={C5} className="slidering" alt="" />
         <img src={C6} className="slidering" alt="" />
       </AliceCarousel> */}
-    
+
       <Card
         className="gradient"
         style={{
@@ -97,28 +113,72 @@ function App() {
         }}
       >
         <div>
-        {/* <h1 className="heading">Me, Myself & I</h1> */}
-        <Typed className="heading"
-      strings={[
-            "I'm a Full Stack Developer",
-            "I Love Software Development",
-            "I Love All My Subscribers",
-          ]}
-          typeSpeed={100}
-          backSpeed={150}
-          loop
-        />
+          {/* <h1 className="heading">Me, Myself & I</h1> */}
+          <Typed
+            className="heading"
+            strings={[
+              "I'm a Full Stack Developer",
+              "I Love Software Development",
+              "I Love All My Subscribers",
+            ]}
+            typeSpeed={100}
+            backSpeed={150}
+            loop
+          />
         </div>
         <div>
           <p className="phara">
-          “With the academic background, management and leadership skills and
-          software engineering knowledge thatI haveacquiredovertheyears, my
-          ambition is to work ina with a reputed organization whereIcouldfurther
-          enhancemy initiatives, creativity and skillswhile
-          sharingmyknowledgeand experience productivelyformy employer”</p>
+            “With the academic background, management and leadership skills and
+            software engineering knowledge thatI haveacquiredovertheyears, my
+            ambition is to work ina with a reputed organization
+            whereIcouldfurther enhancemy initiatives, creativity and skillswhile
+            sharingmyknowledgeand experience productivelyformy employer”
+          </p>
         </div>
         {/* <Button variant="primary">Go somewhere</Button> */}
       </Card>
+      {isOpen && (
+        <Popup
+          content={
+            <>
+              <div className="mbsc-row">
+                <div className="mbsc-col-md-6 mbsc-col-12">
+                  <input
+                    type="text"
+                    label="Name"
+                    placeholder="Enter your Name"
+                    inputStyle="box"
+                    labelStyle="floating"
+                  />
+                </div>
+                <div className="mbsc-col-md-6 mbsc-col-12">
+                  <input
+                    type="email"
+                    label="Email"
+                    placeholder="Enter your Email"
+                    inputStyle="box"
+                    labelStyle="floating"
+                  />
+                </div>
+              </div>
+              <div className="mbsc-row">
+                <div className="mbsc-col-12">
+                  <input
+                    type="text"
+                    label="Message"
+                    placeholder="Enter your Message"
+                    inputStyle="box"
+                    labelStyle="floating"
+                  />
+                </div>
+              </div>
+              <div className="mbsc-row"></div>
+              <Button>Sign in</Button>
+            </>
+          }
+          handleClose={togglePopup}
+        />
+      )}
     </diV>
   );
 }
