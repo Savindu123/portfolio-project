@@ -1,5 +1,92 @@
+.heading {
+  background: -webkit-linear-gradient(rgb(0, 0, 0), rgb(255, 255, 255));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-family: "Raleway", sans-serif;
+  font-size: 50px;
+  font-weight: 800;
+  line-height: 72px;
+  margin-top: 100px;
+  margin-bottom: 10px;
+  margin-right: 200px;
+  margin-left: 30px;
+  text-align: center;
+}
+
+.phara {
+  font-family: "Raleway", sans-serif;
+  color: #ffffff;
+  text-shadow: 2px 2px #0011ff;
+  margin-top: 1ch;
+  font-style: italic;
+  font-size: 25px;
+  margin-top: 50px;
+  margin-bottom: 10px;
+  margin-right: 100px;
+  margin-left: 20px;
+  line-height: 1.35;
+  text-align: center;
+  max-inline-size: 50ch;
+}
+
+.html {
+  block-size: 100%;
+  inline-size: 100%;
+  text-align: center;
+}
+
 .App {
   text-align: center;
+}
+
+.text1 {
+  color: rgb(238, 238, 238);
+  font-family: "Open Sans", sans-serif;
+  font-style: italic;
+  font-size: 30px;
+  font-weight: 300;
+  line-height: 32px;
+  margin: 0 0 72px;
+  text-align: center;
+}
+
+.slidering {
+  width: 1000px;
+  height: 650px;
+  /* object-fit: scale-down; */
+  /* border-radius:100px; */
+  border-radius: 15px 15px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.navbarcolor {
+  background-color: #2647c9;
+}
+.container-max-widths {
+  sm: 540px;
+  md: 720px;
+  lg: 960px;
+  xl: 1140px;
+  xxl: 1320p;
+}
+
+.grad-blue {
+  background: linear-gradient(180deg, #2b5de3, #539ef5);
+}
+
+.buttonContact {
+  background-color: #36c911; /* Green */
+  border: none;
+  color: white;
+  padding: 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
 }
 
 .App-logo {
@@ -28,11 +115,7 @@
   color: #61dafb;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.gradient {
+  background: rgb(82,82,214);
+background: radial-gradient(circle, rgba(82,82,214,0.9920343137254902) 0%, rgba(0,0,0,0.7399334733893557) 100%, rgba(0,0,0,1) 100%);
 }
