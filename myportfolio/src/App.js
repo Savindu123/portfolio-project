@@ -10,7 +10,8 @@ import logo from "./images/logo.svg";
 import AliceCarousel from "react-alice-carousel";
 import "react-alice-carousel/lib/alice-carousel.css";
 import "bootstrap/dist/css/bootstrap.min.css";
- import Button from "react-bootstrap/Button";
+import Button from "react-bootstrap/Button";
+import Form from "react-bootstrap/Form";
 import Card from "react-bootstrap/card";
 import Typed from "react-typed";
 import ContactForm from "./components/ContactForm";
@@ -37,6 +38,30 @@ function App() {
   const togglePopup = () => {
     setIsOpen(!isOpen);
   };
+
+  const [status, setStatus] = useState("Submit");
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setStatus("Sending...");
+    const { name, email, message } = e.target.elements;
+    let details = {
+      email: email.value,
+      name: name.value,
+      message: message.value,
+    };
+    let response = await fetch("http://localhost:5000/contact", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json;charset=utf-8",
+      },
+      body: JSON.stringify(details),
+    });
+    setStatus("Submit");
+    let result = await response.json();
+    alert(result.status);
+  };
+  
+
   return (
     <diV>
       {/* <button onclick={test()}>click </button> */}
@@ -140,41 +165,44 @@ function App() {
       {isOpen && (
         <Popup
           content={
-            <>
-              <div className="mbsc-row">
-                <div className="mbsc-col-md-6 mbsc-col-12">
-                  <input
-                    type="text"
-                    label="Name"
-                    placeholder="Enter your Name"
-                    inputStyle="box"
-                    labelStyle="floating"
-                  />
-                </div>
-                <div className="mbsc-col-md-6 mbsc-col-12">
-                  <input
-                    type="email"
-                    label="Email"
-                    placeholder="Enter your Email"
-                    inputStyle="box"
-                    labelStyle="floating"
-                  />
-                </div>
-              </div>
-              <div className="mbsc-row">
-                <div className="mbsc-col-12">
-                  <input
-                    type="text"
-                    label="Message"
-                    placeholder="Enter your Message"
-                    inputStyle="box"
-                    labelStyle="floating"
-                  />
-                </div>
-              </div>
-              <div className="mbsc-row"></div>
-              <Button>Sign in</Button>
-            </>
+            <Form>
+              <Form.Group className="mb-3" controlId="formBasicEmail">
+                <Form.Label>Email address</Form.Label>
+                <Form.Control
+                  type="email"
+                  placeholder="Enter email"
+                  required
+                  id="email"
+                />
+                <Form.Text className="text-muted">
+                  I'll never share your email with anyone else.
+                </Form.Text>
+              </Form.Group>
+              <Form.Group className="mb-3" controlId="formBasicEmail">
+                <Form.Label>Name</Form.Label>
+                <Form.Control
+                  type="text"
+                  placeholder="Enter name"
+                  required
+                  id="name"
+                />
+                <Form.Text className="text-muted"></Form.Text>
+              </Form.Group>
+
+              <Form.Group className="mb-3" controlId="formBasicEmail">
+                <Form.Label>Message</Form.Label>
+                <Form.Control
+                  type="text"
+                  placeholder="Enter your message"
+                  required
+                  id="message"
+                />
+              </Form.Group>
+
+              <Button variant="primary" type="submit">
+                Submit
+              </Button>
+            </Form>
           }
           handleClose={togglePopup}
         />
